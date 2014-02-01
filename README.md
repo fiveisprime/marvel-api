@@ -82,9 +82,25 @@ marvel.characters.getById('1011227')
   .done();
 ```
 
-# Todo
+## Creators
 
-...everything else... :(
+### #Todo
+
+## Stories
+
+### #Todo
+
+## Comics
+
+### #Todo
+
+## Events
+
+### #Todo
+
+## Series
+
+### #Todo
 
 # License
 
