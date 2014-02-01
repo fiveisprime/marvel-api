@@ -136,7 +136,7 @@ marvel.characters.events('1011334')
   .done();
 ```
 
-### #events
+### #stories
 
 Fetch a tories of events filtered by character ID.
 
