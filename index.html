@@ -31,9 +31,19 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <p>Initialize an API client using your public and private API keys.</p>
+        <p><a href="https://travis-ci.org/fiveisprime/marvel-api"><img src="https://travis-ci.org/fiveisprime/marvel-api.png?branch=master" alt="Build Status"></a></p>
 
-<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">marvel</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'marvel-api'</span><span class="p">).</span><span class="nx">createClient</span><span class="p">({</span>
+<h1>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h1>
+
+<p>Head over to <a href="http://developer.marvel.com">developer.marvel.com</a> and sign up/in
+to get your API keys. Install the module using <a href="https://npmjs.org">npm</a> and
+initialize an API client using the public and private API keys for your
+account.</p>
+
+<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'marvel-api'</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">marvel</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">createClient</span><span class="p">({</span>
   <span class="nx">publicKey</span><span class="o">:</span> <span class="s1">'my-public-key'</span>
 <span class="p">,</span> <span class="nx">privateKey</span><span class="o">:</span> <span class="s1">'my-private-key'</span>
 <span class="p">});</span>
@@ -43,7 +53,7 @@
 
 <p>..use the promise...</p>
 
-<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">characters</span><span class="p">.</span><span class="nx">getAll</span><span class="p">()</span>
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">characters</span><span class="p">.</span><span class="nx">findAll</span><span class="p">()</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
   <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
   <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
@@ -51,7 +61,7 @@
 
 <p>..or use a callback.</p>
 
-<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">characters</span><span class="p">.</span><span class="nx">getAll</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">characters</span><span class="p">.</span><span class="nx">findAll</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
   <span class="p">}</span>
