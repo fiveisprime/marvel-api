@@ -1,37 +1,37 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Marvel-api by fiveisprime</title>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Marvel-api : Node.js wrapper for working with the official Marvel Comics API" />
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Marvel-api</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>Marvel-api</h1>
-        <p>Node.js wrapper for working with the official Marvel Comics API</p>
 
-        <p class="view"><a href="https://github.com/fiveisprime/marvel-api">View the Project on GitHub <small>fiveisprime/marvel-api</small></a></p>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/fiveisprime/marvel-api">View on GitHub</a>
 
+          <h1 id="project_title">Marvel-api</h1>
+          <h2 id="project_tagline">Node.js wrapper for working with the official Marvel Comics API</h2>
 
-        <ul>
-          <li><a href="https://github.com/fiveisprime/marvel-api/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/fiveisprime/marvel-api/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/fiveisprime/marvel-api">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h1>
-<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h1>
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/fiveisprime/marvel-api/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/fiveisprime/marvel-api/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
 
-<p>Initialize an API client using your public and private API keys.</p>
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <p>Initialize an API client using your public and private API keys.</p>
 
 <div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">marvel</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'marvel-api'</span><span class="p">).</span><span class="nx">createClient</span><span class="p">({</span>
   <span class="nx">publicKey</span><span class="o">:</span> <span class="s1">'my-public-key'</span>
@@ -41,6 +41,16 @@
 
 <p>All methods return promises but also accept a callback.</p>
 
+<p>..use the promise...</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">characters</span><span class="p">.</span><span class="nx">getAll</span><span class="p">()</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
+</pre></div>
+
+<p>..or use a callback.</p>
+
 <div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">characters</span><span class="p">.</span><span class="nx">getAll</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
@@ -48,12 +58,6 @@
 
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">results</span><span class="p">);</span>
 <span class="p">});</span>
-</pre></div>
-
-<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">characters</span><span class="p">.</span><span class="nx">getAll</span><span class="p">()</span>
-  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
-  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
-  <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
 </pre></div>
 
 <h3>
@@ -219,12 +223,17 @@ LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
 OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.</p>
       </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/fiveisprime">fiveisprime</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Marvel-api maintained by <a href="https://github.com/fiveisprime">fiveisprime</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
+
     
+
   </body>
 </html>
