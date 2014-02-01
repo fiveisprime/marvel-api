@@ -33,9 +33,11 @@ marvel.characters.getAll()
   .done();
 ```
 
-# Implemented
+# API
 
-The following methods are fully implemented.
+the API is broken into pieces based on the data that will be worked with. Each
+object has methods for interacting with the specific bits of data for that
+object with some reasonable defaults.
 
 ## Characters
 
