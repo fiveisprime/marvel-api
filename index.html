@@ -1,0 +1,230 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Marvel-api by fiveisprime</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Marvel-api</h1>
+        <p>Node.js wrapper for working with the official Marvel Comics API</p>
+
+        <p class="view"><a href="https://github.com/fiveisprime/marvel-api">View the Project on GitHub <small>fiveisprime/marvel-api</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/fiveisprime/marvel-api/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/fiveisprime/marvel-api/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/fiveisprime/marvel-api">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h1>
+
+<p>Initialize an API client using your public and private API keys.</p>
+
+<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">marvel</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'marvel-api'</span><span class="p">).</span><span class="nx">createClient</span><span class="p">({</span>
+  <span class="nx">publicKey</span><span class="o">:</span> <span class="s1">'my-public-key'</span>
+<span class="p">,</span> <span class="nx">privateKey</span><span class="o">:</span> <span class="s1">'my-private-key'</span>
+<span class="p">});</span>
+</pre></div>
+
+<p>All methods return promises but also accept a callback.</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">characters</span><span class="p">.</span><span class="nx">getAll</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">results</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">characters</span><span class="p">.</span><span class="nx">getAll</span><span class="p">()</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
+</pre></div>
+
+<h3>
+<a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h3>
+
+<p>Find Spider-Man's ID then the first 20 comics he's been in.</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">characters</span><span class="p">.</span><span class="nx">findByName</span><span class="p">(</span><span class="s1">'spider-man'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">chars</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Found character ID'</span><span class="p">,</span> <span class="nx">chars</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">id</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">marvel</span><span class="p">.</span><span class="nx">characters</span><span class="p">.</span><span class="nx">comics</span><span class="p">(</span><span class="nx">chars</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">id</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
+</pre></div>
+
+<h1>
+<a name="api" class="anchor" href="#api"><span class="octicon octicon-link"></span></a>API</h1>
+
+<p>the API is broken into pieces based on the data that will be worked with. Each
+object has methods for interacting with the specific bits of data for that
+object with some reasonable defaults.</p>
+
+<h2>
+<a name="characters" class="anchor" href="#characters"><span class="octicon octicon-link"></span></a>Characters</h2>
+
+<h3>
+<a name="findall" class="anchor" href="#findall"><span class="octicon octicon-link"></span></a>#findAll</h3>
+
+<p>Fetch all characters within range. Accepts a limit and/or offset. Offset defaults
+to 0; limit defaults to 20 with a maximum of 100.</p>
+
+<p>Fetch the first 20 characters.</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">characters</span><span class="p">.</span><span class="nx">findAll</span><span class="p">()</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
+</pre></div>
+
+<p>Fetch the first 5 characters.</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">characters</span><span class="p">.</span><span class="nx">findAll</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
+</pre></div>
+
+<p>Fetch 3 characters starting at index 30.</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">characters</span><span class="p">.</span><span class="nx">findAll</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
+</pre></div>
+
+<h3>
+<a name="findbyname" class="anchor" href="#findbyname"><span class="octicon octicon-link"></span></a>#findByName</h3>
+
+<p>Fetch characters (returns an array) with the specified name.</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">characters</span><span class="p">.</span><span class="nx">findByName</span><span class="p">(</span><span class="s1">'spider-man'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
+</pre></div>
+
+<h3>
+<a name="find" class="anchor" href="#find"><span class="octicon octicon-link"></span></a>#find</h3>
+
+<p>Fetch a single character with the specified ID.</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">characters</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'1011227'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
+</pre></div>
+
+<h3>
+<a name="comics" class="anchor" href="#comics"><span class="octicon octicon-link"></span></a>#comics</h3>
+
+<p>Fetch a list of comics filtered by character ID.</p>
+
+<p>Optionally accepts a limit [20] and an offset [0].</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">characters</span><span class="p">.</span><span class="nx">comics</span><span class="p">(</span><span class="s1">'1011334'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
+</pre></div>
+
+<h3>
+<a name="events" class="anchor" href="#events"><span class="octicon octicon-link"></span></a>#events</h3>
+
+<p>Fetch a list of events filtered by character ID.</p>
+
+<p>Optionally accepts a limit [20] and an offset [0].</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">characters</span><span class="p">.</span><span class="nx">events</span><span class="p">(</span><span class="s1">'1011334'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
+</pre></div>
+
+<h3>
+<a name="events-1" class="anchor" href="#events-1"><span class="octicon octicon-link"></span></a>#events</h3>
+
+<p>Fetch a tories of events filtered by character ID.</p>
+
+<p>Optionally accepts a limit [20] and an offset [0].</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">characters</span><span class="p">.</span><span class="nx">stories</span><span class="p">(</span><span class="s1">'1011334'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
+</pre></div>
+
+<h2>
+<a name="creators" class="anchor" href="#creators"><span class="octicon octicon-link"></span></a>Creators</h2>
+
+<h3>
+<a name="todo" class="anchor" href="#todo"><span class="octicon octicon-link"></span></a>#Todo</h3>
+
+<h2>
+<a name="stories" class="anchor" href="#stories"><span class="octicon octicon-link"></span></a>Stories</h2>
+
+<h3>
+<a name="todo-1" class="anchor" href="#todo-1"><span class="octicon octicon-link"></span></a>#Todo</h3>
+
+<h2>
+<a name="comics-1" class="anchor" href="#comics-1"><span class="octicon octicon-link"></span></a>Comics</h2>
+
+<h3>
+<a name="todo-2" class="anchor" href="#todo-2"><span class="octicon octicon-link"></span></a>#Todo</h3>
+
+<h2>
+<a name="events-2" class="anchor" href="#events-2"><span class="octicon octicon-link"></span></a>Events</h2>
+
+<h3>
+<a name="todo-3" class="anchor" href="#todo-3"><span class="octicon octicon-link"></span></a>#Todo</h3>
+
+<h2>
+<a name="series" class="anchor" href="#series"><span class="octicon octicon-link"></span></a>Series</h2>
+
+<h3>
+<a name="todo-4" class="anchor" href="#todo-4"><span class="octicon octicon-link"></span></a>#Todo</h3>
+
+<h1>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h1>
+
+<p>Copyright (c) 2014, Matt Hernandez <a href="mailto:matt@modulus.io">matt@modulus.io</a></p>
+
+<p>Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.</p>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
+FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/fiveisprime">fiveisprime</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
