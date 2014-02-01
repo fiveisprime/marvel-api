@@ -35,9 +35,9 @@ marvel.characters.getAll()
 
 # Implemented
 
-### Characters
+## Characters
 
-**GetAll**
+### GetAll
 
 Get all characters within range. Accepts a limit and/or offset. Offset defaults
 to 0; limit defaults to 20 with a maximum of 100.
@@ -66,7 +66,7 @@ marvel.characters.getAll(3, 30)
   .done();
 ```
 
-**GetById**
+### GetById
 
 Get the character with the specified index.
 
