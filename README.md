@@ -3,7 +3,7 @@ marvel-api
 
 Node.js wrapper for working with the official Marvel Comics API
 
-#Usage
+# Usage
 
 Initialize an API client using your public and private API keys.
 
@@ -39,7 +39,7 @@ The following methods are fully implemented.
 
 ## Characters
 
-### GetAll
+###  #GetAll
 
 Get all characters within range. Accepts a limit and/or offset. Offset defaults
 to 0; limit defaults to 20 with a maximum of 100.
@@ -71,7 +71,7 @@ marvel.characters.getAll(3, 30)
   .done();
 ```
 
-### GetById
+###  #GetById
 
 Get the character with the specified index.
 
