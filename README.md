@@ -24,7 +24,7 @@ All methods return promises but also accept a callback.
 ..use the promise...
 
 ```js
-marvel.characters.getAll()
+marvel.characters.findAll()
   .then(console.log)
   .fail(console.error)
   .done();
@@ -33,7 +33,7 @@ marvel.characters.getAll()
 ..or use a callback.
 
 ```js
-marvel.characters.getAll(function(err, results) {
+marvel.characters.findAll(function(err, results) {
   if (err) {
     return console.error(err);
   }
