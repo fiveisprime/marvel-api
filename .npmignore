@@ -1,4 +1,5 @@
 spec
+coverage
 
 .jshintrc
 test.js

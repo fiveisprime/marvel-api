@@ -24,7 +24,7 @@ describe('characters', function() {
 
     nock(rootUrl)
       .get(route)
-      .reply(200, '{ "data": { "results": [] } }');
+      .reply(200, { data: { results: [] } });
 
     characters.findAll()
       .then(function(data) {
@@ -42,7 +42,7 @@ describe('characters', function() {
 
     nock(rootUrl)
       .get(route)
-      .reply(200, '{ "data": { "results": [] } }');
+      .reply(200, { data: { results: [] } });
 
     characters.findAll(10)
       .then(function(data) {
@@ -60,7 +60,7 @@ describe('characters', function() {
 
     nock(rootUrl)
       .get(route)
-      .reply(200, '{ "data": { "results": [] } }');
+      .reply(200, { data: { results: [] } });
 
     characters.findAll(10, 10)
       .then(function(data) {
@@ -78,7 +78,7 @@ describe('characters', function() {
 
     nock(rootUrl)
       .get(route)
-      .reply(200, '{ "data": { "results": {} } }');
+      .reply(200, { data: { results: {} } });
 
     characters.findByName('test-man')
       .then(function(data) {
@@ -97,7 +97,7 @@ describe('characters', function() {
 
     nock(rootUrl)
       .get(route)
-      .reply(200, '{ "data": { "results": {} } }');
+      .reply(200, { data: { results: {} } });
 
     characters.find('1234')
       .then(function(data) {
@@ -116,7 +116,7 @@ describe('characters', function() {
 
     nock(rootUrl)
       .get(route)
-      .reply(200, '{ "data": { "results": [] } }');
+      .reply(200, { data: { results: [] } });
 
     characters.comics('1234')
       .then(function(data) {
@@ -135,7 +135,7 @@ describe('characters', function() {
 
     nock(rootUrl)
       .get(route)
-      .reply(200, '{ "data": { "results": [] } }');
+      .reply(200, { data: { results: [] } });
 
     characters.comics('1234', 10)
       .then(function(data) {
@@ -154,7 +154,7 @@ describe('characters', function() {
 
     nock(rootUrl)
       .get(route)
-      .reply(200, '{ "data": { "results": [] } }');
+      .reply(200, { data: { results: [] } });
 
     characters.comics('1234', 10, 10)
       .then(function(data) {
@@ -173,7 +173,7 @@ describe('characters', function() {
 
     nock(rootUrl)
       .get(route)
-      .reply(200, '{ "data": { "results": [] } }');
+      .reply(200, { data: { results: [] } });
 
     characters.events('1234')
       .then(function(data) {
@@ -192,7 +192,7 @@ describe('characters', function() {
 
     nock(rootUrl)
       .get(route)
-      .reply(200, '{ "data": { "results": [] } }');
+      .reply(200, { data: { results: [] } });
 
     characters.events('1234', 10)
       .then(function(data) {
@@ -211,7 +211,7 @@ describe('characters', function() {
 
     nock(rootUrl)
       .get(route)
-      .reply(200, '{ "data": { "results": [] } }');
+      .reply(200, { data: { results: [] } });
 
     characters.events('1234', 10, 10)
       .then(function(data) {
@@ -230,7 +230,7 @@ describe('characters', function() {
 
     nock(rootUrl)
       .get(route)
-      .reply(200, '{ "data": { "results": [] } }');
+      .reply(200, { data: { results: [] } });
 
     characters.stories('1234')
       .then(function(data) {
@@ -249,7 +249,7 @@ describe('characters', function() {
 
     nock(rootUrl)
       .get(route)
-      .reply(200, '{ "data": { "results": [] } }');
+      .reply(200, { data: { results: [] } });
 
     characters.stories('1234', 10)
       .then(function(data) {
@@ -268,7 +268,7 @@ describe('characters', function() {
 
     nock(rootUrl)
       .get(route)
-      .reply(200, '{ "data": { "results": [] } }');
+      .reply(200, { data: { results: [] } });
 
     characters.stories('1234', 10, 10)
       .then(function(data) {
@@ -319,7 +319,7 @@ describe('characters', function() {
         })
         .done();
     });
-    
+
     it('should catch errors from #find', function(done) {
       var route = util.format(
         '/v1/public/characters/%s?ts=%s&apikey=public-test&hash=%s'
@@ -340,7 +340,7 @@ describe('characters', function() {
         })
         .done();
     });
-    
+
     it('should catch errors from #comics', function(done) {
       var route = util.format(
         '/v1/public/characters/%s/comics?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
@@ -361,7 +361,7 @@ describe('characters', function() {
         })
         .done();
     });
-    
+
     it('should catch errors from #events', function(done) {
       var route = util.format(
         '/v1/public/characters/%s/events?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
@@ -382,7 +382,7 @@ describe('characters', function() {
         })
         .done();
     });
-    
+
     it('should catch errors from #stories', function(done) {
       var route = util.format(
         '/v1/public/characters/%s/stories?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
@@ -402,6 +402,152 @@ describe('characters', function() {
           done();
         })
         .done();
+    });
+  });
+
+  describe('optional parameters with callbacks', function() {
+
+    it('should call #findAll with the correct defaults', function(done) {
+      var route = util.format(
+        '/v1/public/characters?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
+      , ts
+      , hash);
+
+      nock(rootUrl)
+        .get(route)
+        .reply(200, { data: { results: [] } });
+
+      characters.findAll(function(err, data) {
+        (err === null).should.equal(true);
+        data.should.exist;
+        done();
+      });
+    });
+
+    it('should call #findAll with the correct limit', function(done) {
+      var route = util.format(
+        '/v1/public/characters?ts=%s&apikey=public-test&hash=%s&limit=10&offset=0'
+      , ts
+      , hash);
+
+      nock(rootUrl)
+        .get(route)
+        .reply(200, { data: { results: [] } });
+
+      characters.findAll(10, function(err, data) {
+        (err === null).should.equal(true);
+        data.should.exist;
+
+        done();
+      });
+    });
+
+    it('should call #comics with the correct defaults', function(done) {
+      var route = util.format(
+        '/v1/public/characters/%s/comics?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
+      , '1234'
+      , ts
+      , hash);
+
+      nock(rootUrl)
+        .get(route)
+        .reply(200, { data: { results: [] } });
+
+      characters.comics('1234', function(err, data) {
+        (err === null).should.equal(true);
+        data.should.exist;
+        done();
+      });
+    });
+
+    it('should call #comics with the correct limit', function(done) {
+      var route = util.format(
+        '/v1/public/characters/%s/comics?ts=%s&apikey=public-test&hash=%s&limit=10&offset=0'
+      , '1234'
+      , ts
+      , hash);
+
+      nock(rootUrl)
+        .get(route)
+        .reply(200, { data: { results: [] } });
+
+      characters.comics('1234', 10, function(err, data) {
+        (err === null).should.equal(true);
+        data.should.exist;
+        done();
+      });
+    });
+
+    it('should call #events with the correct defaults', function(done) {
+      var route = util.format(
+        '/v1/public/characters/%s/events?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
+      , '1234'
+      , ts
+      , hash);
+
+      nock(rootUrl)
+        .get(route)
+        .reply(200, { data: { results: [] } });
+
+      characters.events('1234', function(err, data) {
+        (err === null).should.equal(true);
+        data.should.exist;
+        done();
+      });
+    });
+
+    it('should call #events with the correct limit', function(done) {
+      var route = util.format(
+        '/v1/public/characters/%s/events?ts=%s&apikey=public-test&hash=%s&limit=10&offset=0'
+      , '1234'
+      , ts
+      , hash);
+
+      nock(rootUrl)
+        .get(route)
+        .reply(200, { data: { results: [] } });
+
+      characters.events('1234', 10, function(err, data) {
+        (err === null).should.equal(true);
+        data.should.exist;
+        done();
+      });
+    });
+
+    it('should call #stories with the correct defaults', function(done) {
+      var route = util.format(
+        '/v1/public/characters/%s/stories?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
+      , '1234'
+      , ts
+      , hash);
+
+      nock(rootUrl)
+        .get(route)
+        .reply(200, { data: { results: [] } });
+
+      characters.stories('1234', function(err, data) {
+        (err === null).should.equal(true);
+        data.should.exist;
+        done();
+      });
+    });
+
+    it('should call #stories with the correct limit', function(done) {
+      var route = util.format(
+        '/v1/public/characters/%s/stories?ts=%s&apikey=public-test&hash=%s&limit=10&offset=0'
+      , '1234'
+      , ts
+      , hash);
+
+      nock(rootUrl)
+        .get(route)
+        .reply(200, { data: { results: [] } });
+
+      characters.stories('1234', 10, function(err, data) {
+        (err === null).should.equal(true);
+        data.should.exist;
+        done();
+      });
     });
   });
 });
