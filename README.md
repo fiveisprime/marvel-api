@@ -5,10 +5,15 @@ Node.js wrapper for working with the official Marvel Comics API
 
 # Usage
 
-Initialize an API client using your public and private API keys.
+Head over to [developer.marvel.com](http://developer.marvel.com) and sign up/in
+to get your API keys. Install the module using [npm](https://npmjs.org) and
+initialize an API client using the public and private API keys for your
+account.
 
 ```js
-var marvel = require('marvel-api').createClient({
+var api = require('marvel-api');
+
+var marvel = api.createClient({
   publicKey: 'my-public-key'
 , privateKey: 'my-private-key'
 });
