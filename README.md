@@ -33,6 +33,21 @@ marvel.characters.getAll()
   .done();
 ```
 
+### Example
+
+Find Spider-Man's ID then the first 20 comics he's been in.
+
+```js
+marvel.characters.findByName('spider-man')
+  .then(function(chars) {
+    console.log('Found character ID', chars[0].id);
+    return marvel.characters.comics(chars[0].id);
+  })
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
 # API
 
 the API is broken into pieces based on the data that will be worked with. Each
@@ -41,44 +56,94 @@ object with some reasonable defaults.
 
 ## Characters
 
-###  #GetAll
+###  #findAll
 
-Get all characters within range. Accepts a limit and/or offset. Offset defaults
+Fetch all characters within range. Accepts a limit and/or offset. Offset defaults
 to 0; limit defaults to 20 with a maximum of 100.
 
-Get the first 20 characters.
+Fetch the first 20 characters.
 
 ```js
-marvel.characters.getAll()
+marvel.characters.findAll()
   .then(console.log)
   .fail(console.error)
   .done();
 ```
 
-Get the first 5 characters.
+Fetch the first 5 characters.
 
 ```js
-marvel.characters.getAll(5)
+marvel.characters.findAll(5)
   .then(console.log)
   .fail(console.error)
   .done();
 ```
 
-Get 3 characters starting at index 30.
+Fetch 3 characters starting at index 30.
 
 ```js
-marvel.characters.getAll(3, 30)
+marvel.characters.findAll(3, 30)
   .then(console.log)
   .fail(console.error)
   .done();
 ```
 
-###  #GetById
+### #findByName
 
-Get the character with the specified index.
+Fetch characters (returns an array) with the specified name.
 
 ```js
-marvel.characters.getById('1011227')
+marvel.characters.findByName('spider-man')
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+###  #find
+
+Fetch a single character with the specified ID.
+
+```js
+marvel.characters.find('1011227')
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+### #comics
+
+Fetch a list of comics filtered by character ID.
+
+Optionally accepts a limit [20] and an offset [0].
+
+```js
+marvel.characters.comics('1011334')
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+### #events
+
+Fetch a list of events filtered by character ID.
+
+Optionally accepts a limit [20] and an offset [0].
+
+```js
+marvel.characters.events('1011334')
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+### #events
+
+Fetch a tories of events filtered by character ID.
+
+Optionally accepts a limit [20] and an offset [0].
+
+```js
+marvel.characters.stories('1011334')
   .then(console.log)
   .fail(console.error)
   .done();

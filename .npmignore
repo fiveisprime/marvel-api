@@ -1,4 +1,5 @@
 spec
 
+.jshintrc
 test.js
 Makefile
