@@ -62,7 +62,7 @@ marvel.characters.getAll(5)
   .done();
 ```
 
-Get the 3 characters starting at index 30.
+Get 3 characters starting at index 30.
 
 ```js
 marvel.characters.getAll(3, 30)
@@ -76,7 +76,6 @@ marvel.characters.getAll(3, 30)
 Get the character with the specified index.
 
 ```js
-// Get the first 5 characters.
 marvel.characters.getById('1011227')
   .then(console.log)
   .fail(console.error)
