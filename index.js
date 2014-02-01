@@ -1,3 +1,9 @@
+//
+//     MArvel-API
+//     Copyright(c) 2014 Matt Hernandez <matt@modulus.io>
+//     ISC Licensed
+//
+
 exports.createClient = function(options) {
 
   if (!options) {
@@ -12,5 +18,5 @@ exports.createClient = function(options) {
     throw new Error('You must specify a public API key');
   }
 
-  return require('./lib/marvel')(options);
+  return require('./lib')(options);
 };
