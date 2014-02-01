@@ -16,6 +16,17 @@ var marvel = require('marvel-api').createClient({
 
 All methods return promises but also accept a callback.
 
+..use the promise...
+
+```js
+marvel.characters.getAll()
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+..or use a callback.
+
 ```js
 marvel.characters.getAll(function(err, results) {
   if (err) {
@@ -24,13 +35,6 @@ marvel.characters.getAll(function(err, results) {
 
   console.log(results);
 });
-```
-
-```js
-marvel.characters.getAll()
-  .then(console.log)
-  .fail(console.error)
-  .done();
 ```
 
 ### Example
