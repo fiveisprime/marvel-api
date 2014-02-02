@@ -223,6 +223,17 @@ marvel.creators.findByName('austin', 'dave', 'cam')
   .done();
 ```
 
+###  #find
+
+Fetch a single creator with the specified ID.
+
+```js
+marvel.creators.find('4110')
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
 ## Stories
 
 ### #Todo

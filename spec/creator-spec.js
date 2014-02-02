@@ -123,4 +123,23 @@ describe('creators', function() {
       })
       .done();
   });
+
+  it('should call #find with the correct id', function(done) {
+    var route = util.format(
+      '/v1/public/creators/%s?ts=%s&apikey=public-test&hash=%s'
+    , '1234'
+    , ts
+    , hash);
+
+    nock(rootUrl)
+      .get(route)
+      .reply(200, { data: { results: {} } });
+
+    creators.find('1234')
+      .then(function(data) {
+        data.should.exist;
+        done();
+      })
+      .done();
+  });
 });
