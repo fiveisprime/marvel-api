@@ -142,4 +142,61 @@ describe('creators', function() {
       })
       .done();
   });
+
+  it('should call #comics with the correct default parameters', function(done) {
+    var route = util.format(
+      '/v1/public/creators/%s/comics?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
+    , '1234'
+    , ts
+    , hash);
+
+    nock(rootUrl)
+      .get(route)
+      .reply(200, { data: { results: [] } });
+
+    creators.comics('1234')
+      .then(function(data) {
+        data.should.exist;
+        done();
+      })
+      .done();
+  });
+
+  it('should call #comics with the correct limit', function(done) {
+    var route = util.format(
+      '/v1/public/creators/%s/comics?ts=%s&apikey=public-test&hash=%s&limit=10&offset=0'
+    , '1234'
+    , ts
+    , hash);
+
+    nock(rootUrl)
+      .get(route)
+      .reply(200, { data: { results: [] } });
+
+    creators.comics('1234', 10)
+      .then(function(data) {
+        data.should.exist;
+        done();
+      })
+      .done();
+  });
+
+  it('should call #comics with the correct limit and offset', function(done) {
+    var route = util.format(
+      '/v1/public/creators/%s/comics?ts=%s&apikey=public-test&hash=%s&limit=10&offset=10'
+    , '1234'
+    , ts
+    , hash);
+
+    nock(rootUrl)
+      .get(route)
+      .reply(200, { data: { results: [] } });
+
+    creators.comics('1234', 10, 10)
+      .then(function(data) {
+        data.should.exist;
+        done();
+      })
+      .done();
+  });
 });

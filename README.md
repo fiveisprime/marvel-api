@@ -234,6 +234,19 @@ marvel.creators.find('4110')
   .done();
 ```
 
+### #comics
+
+Fetch a list of comics filtered by creator ID.
+
+Optionally accepts a limit [20] and an offset [0].
+
+```js
+marvel.creators.comics('4110')
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
 ## Stories
 
 ### #Todo
