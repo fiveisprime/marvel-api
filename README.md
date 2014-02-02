@@ -160,7 +160,68 @@ marvel.characters.stories('1011334')
 
 ## Creators
 
-### #Todo
+###  #findAll
+
+Fetch all creators within range. Accepts a limit and/or offset. Offset defaults
+to 0; limit defaults to 20 with a maximum of 100.
+
+Fetch the first 20 creators.
+
+```js
+marvel.creators.findAll()
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+Fetch the first 5 creators.
+
+```js
+marvel.creators.findAll(5)
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+Fetch 3 creators starting at index 30.
+
+```js
+marvel.creators.findAll(3, 30)
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+### #findByName
+
+Fetch creators (returns an array) with the specified name. A first name, middle name (option) and last name (option) can be specified.
+
+Fetch by first name only.
+
+```js
+marvel.creators.findByName('austin')
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+Fetch by first and middle name only.
+
+```js
+marvel.creators.findByName('austin', 'dave')
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+Fetch by first, middle, and last name.
+
+```js
+marvel.creators.findByName('austin', 'dave', 'cam')
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
 
 ## Stories
 
