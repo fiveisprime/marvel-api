@@ -248,6 +248,30 @@ to 0; limit defaults to 20 with a maximum of 100.</p>
   <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
 </pre></div>
 
+<h3>
+<a name="find-1" class="anchor" href="#find-1"><span class="octicon octicon-link"></span></a>#find</h3>
+
+<p>Fetch a single creator with the specified ID.</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">creators</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'4110'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
+</pre></div>
+
+<h3>
+<a name="comics-1" class="anchor" href="#comics-1"><span class="octicon octicon-link"></span></a>#comics</h3>
+
+<p>Fetch a list of comics filtered by creator ID.</p>
+
+<p>Optionally accepts a limit [20] and an offset [0].</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">creators</span><span class="p">.</span><span class="nx">comics</span><span class="p">(</span><span class="s1">'4110'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
+</pre></div>
+
 <h2>
 <a name="stories-1" class="anchor" href="#stories-1"><span class="octicon octicon-link"></span></a>Stories</h2>
 
@@ -255,7 +279,7 @@ to 0; limit defaults to 20 with a maximum of 100.</p>
 <a name="todo" class="anchor" href="#todo"><span class="octicon octicon-link"></span></a>#Todo</h3>
 
 <h2>
-<a name="comics-1" class="anchor" href="#comics-1"><span class="octicon octicon-link"></span></a>Comics</h2>
+<a name="comics-2" class="anchor" href="#comics-2"><span class="octicon octicon-link"></span></a>Comics</h2>
 
 <h3>
 <a name="todo-1" class="anchor" href="#todo-1"><span class="octicon octicon-link"></span></a>#Todo</h3>
