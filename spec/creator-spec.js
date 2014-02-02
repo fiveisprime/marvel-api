@@ -69,4 +69,58 @@ describe('creators', function() {
       })
       .done();
   });
+
+  it('should call #findByName with just a first name', function(done) {
+    var route = util.format(
+      '/v1/public/creators?ts=%s&apikey=public-test&hash=%s&firstName=austin&middleName=&lastName='
+    , ts
+    , hash);
+
+    nock(rootUrl)
+      .get(route)
+      .reply(200, { data: { results: {} } });
+
+    creators.findByName('austin')
+      .then(function(data) {
+        data.should.exist;
+        done();
+      })
+      .done();
+  });
+
+  it('should call #findByName with a first and middle name', function(done) {
+    var route = util.format(
+      '/v1/public/creators?ts=%s&apikey=public-test&hash=%s&firstName=austin&middleName=dave&lastName='
+    , ts
+    , hash);
+
+    nock(rootUrl)
+      .get(route)
+      .reply(200, { data: { results: {} } });
+
+    creators.findByName('austin', 'dave')
+      .then(function(data) {
+        data.should.exist;
+        done();
+      })
+      .done();
+  });
+
+  it('should call #findByName with a first, middle and last name', function(done) {
+    var route = util.format(
+      '/v1/public/creators?ts=%s&apikey=public-test&hash=%s&firstName=austin&middleName=dave&lastName=cam'
+    , ts
+    , hash);
+
+    nock(rootUrl)
+      .get(route)
+      .reply(200, { data: { results: {} } });
+
+    creators.findByName('austin', 'dave', 'cam')
+      .then(function(data) {
+        data.should.exist;
+        done();
+      })
+      .done();
+  });
 });
