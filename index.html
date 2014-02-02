@@ -190,31 +190,87 @@ to 0; limit defaults to 20 with a maximum of 100.</p>
 <a name="creators" class="anchor" href="#creators"><span class="octicon octicon-link"></span></a>Creators</h2>
 
 <h3>
-<a name="todo" class="anchor" href="#todo"><span class="octicon octicon-link"></span></a>#Todo</h3>
+<a name="findall-1" class="anchor" href="#findall-1"><span class="octicon octicon-link"></span></a>#findAll</h3>
+
+<p>Fetch all creators within range. Accepts a limit and/or offset. Offset defaults
+to 0; limit defaults to 20 with a maximum of 100.</p>
+
+<p>Fetch the first 20 creators.</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">creators</span><span class="p">.</span><span class="nx">findAll</span><span class="p">()</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
+</pre></div>
+
+<p>Fetch the first 5 creators.</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">creators</span><span class="p">.</span><span class="nx">findAll</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
+</pre></div>
+
+<p>Fetch 3 creators starting at index 30.</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">creators</span><span class="p">.</span><span class="nx">findAll</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
+</pre></div>
+
+<h3>
+<a name="findbyname-1" class="anchor" href="#findbyname-1"><span class="octicon octicon-link"></span></a>#findByName</h3>
+
+<p>Fetch creators (returns an array) with the specified name. A first name, middle name (option) and last name (option) can be specified.</p>
+
+<p>Fetch by first name only.</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">creators</span><span class="p">.</span><span class="nx">findByName</span><span class="p">(</span><span class="s1">'austin'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
+</pre></div>
+
+<p>Fetch by first and middle name only.</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">creators</span><span class="p">.</span><span class="nx">findByName</span><span class="p">(</span><span class="s1">'austin'</span><span class="p">,</span> <span class="s1">'dave'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
+</pre></div>
+
+<p>Fetch by first, middle, and last name.</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">creators</span><span class="p">.</span><span class="nx">findByName</span><span class="p">(</span><span class="s1">'austin'</span><span class="p">,</span> <span class="s1">'dave'</span><span class="p">,</span> <span class="s1">'cam'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
+</pre></div>
 
 <h2>
 <a name="stories-1" class="anchor" href="#stories-1"><span class="octicon octicon-link"></span></a>Stories</h2>
 
 <h3>
-<a name="todo-1" class="anchor" href="#todo-1"><span class="octicon octicon-link"></span></a>#Todo</h3>
+<a name="todo" class="anchor" href="#todo"><span class="octicon octicon-link"></span></a>#Todo</h3>
 
 <h2>
 <a name="comics-1" class="anchor" href="#comics-1"><span class="octicon octicon-link"></span></a>Comics</h2>
 
 <h3>
-<a name="todo-2" class="anchor" href="#todo-2"><span class="octicon octicon-link"></span></a>#Todo</h3>
+<a name="todo-1" class="anchor" href="#todo-1"><span class="octicon octicon-link"></span></a>#Todo</h3>
 
 <h2>
 <a name="events-1" class="anchor" href="#events-1"><span class="octicon octicon-link"></span></a>Events</h2>
 
 <h3>
-<a name="todo-3" class="anchor" href="#todo-3"><span class="octicon octicon-link"></span></a>#Todo</h3>
+<a name="todo-2" class="anchor" href="#todo-2"><span class="octicon octicon-link"></span></a>#Todo</h3>
 
 <h2>
 <a name="series" class="anchor" href="#series"><span class="octicon octicon-link"></span></a>Series</h2>
 
 <h3>
-<a name="todo-4" class="anchor" href="#todo-4"><span class="octicon octicon-link"></span></a>#Todo</h3>
+<a name="todo-3" class="anchor" href="#todo-3"><span class="octicon octicon-link"></span></a>#Todo</h3>
 
 <h1>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h1>
