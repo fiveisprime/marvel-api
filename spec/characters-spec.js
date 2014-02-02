@@ -278,7 +278,7 @@ describe('characters', function() {
       .done();
   });
 
-  describe('errors', function() {
+  describe('error handling', function() {
 
     it('should catch errors from #findAll', function(done) {
       var route = util.format(
