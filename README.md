@@ -192,6 +192,37 @@ marvel.creators.findAll(3, 30)
   .done();
 ```
 
+### #findByName
+
+Fetch creators (returns an array) with the specified name. A first name, middle name (option) and last name (option) can be specified.
+
+Fetch by first name only.
+
+```js
+marvel.creators.findByName('austin')
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+Fetch by first and middle name only.
+
+```js
+marvel.creators.findByName('austin', 'dave')
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+Fetch by first, middle, and last name.
+
+```js
+marvel.creators.findByName('austin', 'dave', 'cam')
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
 ## Stories
 
 ### #Todo
