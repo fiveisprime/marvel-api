@@ -287,7 +287,61 @@ marvel.creators.comics('4110')
 
 ## Comics
 
-### #Todo
+###  #findAll
+
+Fetch all comics within range. Accepts a limit and/or offset. Offset defaults
+to 0; limit defaults to 20 with a maximum of 100.
+
+Fetch the first 20 comics.
+
+```js
+marvel.comics.findAll()
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+Fetch the first 5 comics.
+
+```js
+marvel.comics.findAll(5)
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+Fetch 3 comics starting at index 30.
+
+```js
+marvel.comics.findAll(3, 30)
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+###  #find
+
+Fetch a single comic with the specified ID.
+
+```js
+marvel.comics.find('4110')
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+### #characters
+
+Fetch a list of comics filtered by character ID.
+
+Optionally accepts a limit [20] and an offset [0].
+
+```js
+marvel.comics.characters('4110')
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
 
 ## Events
 
