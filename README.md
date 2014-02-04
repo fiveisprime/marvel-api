@@ -42,17 +42,51 @@ marvel.characters.findAll(function(err, results) {
 });
 ```
 
+### Response Format
+
+The response includes two properties, `data` which is the actual data returned
+from the request and `meta` which includes information about the result set
+such as the number of items retrieved, the total available items and the
+current offset into the data. This allows some visibility into the data so that
+you can make incremental requests to retrieve large datasets.
+
+```js
+{
+  data: [
+    {
+      id: 43495,
+      digitalId: 28150,
+      ...
+    },
+    {
+      id: 42566,
+      digitalId: 0,
+      ...
+    }
+  ],
+  meta: {
+    offset: 0,
+    limit: 20,
+    total: 2576,
+    count: 20
+  }
+}
+```
+
 ### Example
 
 Find Spider-Man's ID then the first 20 comics he's been in.
 
 ```js
 marvel.characters.findByName('spider-man')
-  .then(function(chars) {
-    console.log('Found character ID', chars[0].id);
-    return marvel.characters.comics(chars[0].id);
+  .then(function(res) {
+    console.log('Found character ID', res.data[0].id);
+    return marvel.characters.comics(res.data[0].id);
   })
-  .then(console.log)
+  .then(function(res) {
+    console.log('found %s comics of %s total', res.meta.count, res.meta.total);
+    console.log(res.data);
+  })
   .fail(console.error)
   .done();
 ```
