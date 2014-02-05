@@ -7,7 +7,15 @@ var nock  = require('nock')
 var comics = require('../lib/comics')({
   publicKey: 'public-test'
 , privateKey: 'private-test'
-});
+}, utils);
+
+utils.timestamp = function() {
+  return 1234;
+};
+
+utils.createHash = function() {
+  return '5678';
+};
 
 describe('comics', function() {
 
