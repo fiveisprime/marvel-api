@@ -4,7 +4,7 @@ var nock  = require('nock')
   , rootUrl = 'http://gateway.marvel.com'
   , ts, hash;
 
-var characters = require('../lib/characters')({
+var series = require('../lib/series')({
   publicKey: 'public-test'
 , privateKey: 'private-test'
 }, utils);
@@ -17,7 +17,7 @@ utils.createHash = function() {
   return '5678';
 };
 
-describe('characters', function() {
+describe('series', function() {
 
   beforeEach(function() {
     ts = utils.timestamp();
@@ -26,7 +26,7 @@ describe('characters', function() {
 
   it('should call #findAll with the correct default parameters', function(done) {
     var route = util.format(
-      '/v1/public/characters?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
+      '/v1/public/series?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
     , ts
     , hash);
 
@@ -34,7 +34,7 @@ describe('characters', function() {
       .get(route)
       .reply(200, { data: { results: [] } });
 
-    characters.findAll()
+    series.findAll()
       .then(function(data) {
         data.should.exist;
         done();
@@ -44,7 +44,7 @@ describe('characters', function() {
 
   it('should call #findAll with the correct limit', function(done) {
     var route = util.format(
-      '/v1/public/characters?ts=%s&apikey=public-test&hash=%s&limit=10&offset=0'
+      '/v1/public/series?ts=%s&apikey=public-test&hash=%s&limit=10&offset=0'
     , ts
     , hash);
 
@@ -52,7 +52,7 @@ describe('characters', function() {
       .get(route)
       .reply(200, { data: { results: [] } });
 
-    characters.findAll(10)
+    series.findAll(10)
       .then(function(data) {
         data.should.exist;
         done();
@@ -62,7 +62,7 @@ describe('characters', function() {
 
   it('should call #findAll with the correct limit and offset', function(done) {
     var route = util.format(
-      '/v1/public/characters?ts=%s&apikey=public-test&hash=%s&limit=10&offset=10'
+      '/v1/public/series?ts=%s&apikey=public-test&hash=%s&limit=10&offset=10'
     , ts
     , hash);
 
@@ -70,7 +70,7 @@ describe('characters', function() {
       .get(route)
       .reply(200, { data: { results: [] } });
 
-    characters.findAll(10, 10)
+    series.findAll(10, 10)
       .then(function(data) {
         data.should.exist;
         done();
@@ -78,9 +78,9 @@ describe('characters', function() {
       .done();
   });
 
-  it('should call #findByName with the correct parameters', function(done) {
+  it('should call #findByTitle with the correct parameters', function(done) {
     var route = util.format(
-      '/v1/public/characters?ts=%s&apikey=public-test&hash=%s&name=test-man'
+      '/v1/public/series?ts=%s&apikey=public-test&hash=%s&title=test-man'
     , ts
     , hash);
 
@@ -88,7 +88,7 @@ describe('characters', function() {
       .get(route)
       .reply(200, { data: { results: {} } });
 
-    characters.findByName('test-man')
+    series.findByTitle('test-man')
       .then(function(data) {
         data.should.exist;
         done();
@@ -98,7 +98,7 @@ describe('characters', function() {
 
   it('should call #find with the correct id', function(done) {
     var route = util.format(
-      '/v1/public/characters/%s?ts=%s&apikey=public-test&hash=%s'
+      '/v1/public/series/%s?ts=%s&apikey=public-test&hash=%s'
     , '1234'
     , ts
     , hash);
@@ -107,7 +107,7 @@ describe('characters', function() {
       .get(route)
       .reply(200, { data: { results: {} } });
 
-    characters.find('1234')
+    series.find('1234')
       .then(function(data) {
         data.should.exist;
         done();
@@ -117,7 +117,7 @@ describe('characters', function() {
 
   it('should call #comics with the correct default parameters', function(done) {
     var route = util.format(
-      '/v1/public/characters/%s/comics?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
+      '/v1/public/series/%s/comics?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
     , '1234'
     , ts
     , hash);
@@ -126,7 +126,7 @@ describe('characters', function() {
       .get(route)
       .reply(200, { data: { results: [] } });
 
-    characters.comics('1234')
+    series.comics('1234')
       .then(function(data) {
         data.should.exist;
         done();
@@ -136,7 +136,7 @@ describe('characters', function() {
 
   it('should call #comics with the correct limit', function(done) {
     var route = util.format(
-      '/v1/public/characters/%s/comics?ts=%s&apikey=public-test&hash=%s&limit=10&offset=0'
+      '/v1/public/series/%s/comics?ts=%s&apikey=public-test&hash=%s&limit=10&offset=0'
     , '1234'
     , ts
     , hash);
@@ -145,7 +145,7 @@ describe('characters', function() {
       .get(route)
       .reply(200, { data: { results: [] } });
 
-    characters.comics('1234', 10)
+    series.comics('1234', 10)
       .then(function(data) {
         data.should.exist;
         done();
@@ -155,7 +155,7 @@ describe('characters', function() {
 
   it('should call #comics with the correct limit and offset', function(done) {
     var route = util.format(
-      '/v1/public/characters/%s/comics?ts=%s&apikey=public-test&hash=%s&limit=10&offset=10'
+      '/v1/public/series/%s/comics?ts=%s&apikey=public-test&hash=%s&limit=10&offset=10'
     , '1234'
     , ts
     , hash);
@@ -164,7 +164,7 @@ describe('characters', function() {
       .get(route)
       .reply(200, { data: { results: [] } });
 
-    characters.comics('1234', 10, 10)
+    series.comics('1234', 10, 10)
       .then(function(data) {
         data.should.exist;
         done();
@@ -174,7 +174,7 @@ describe('characters', function() {
 
   it('should call #events with the correct default parameters', function(done) {
     var route = util.format(
-      '/v1/public/characters/%s/events?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
+      '/v1/public/series/%s/events?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
     , '1234'
     , ts
     , hash);
@@ -183,7 +183,7 @@ describe('characters', function() {
       .get(route)
       .reply(200, { data: { results: [] } });
 
-    characters.events('1234')
+    series.events('1234')
       .then(function(data) {
         data.should.exist;
         done();
@@ -193,7 +193,7 @@ describe('characters', function() {
 
   it('should call #events with the correct limit', function(done) {
     var route = util.format(
-      '/v1/public/characters/%s/events?ts=%s&apikey=public-test&hash=%s&limit=10&offset=0'
+      '/v1/public/series/%s/events?ts=%s&apikey=public-test&hash=%s&limit=10&offset=0'
     , '1234'
     , ts
     , hash);
@@ -202,7 +202,7 @@ describe('characters', function() {
       .get(route)
       .reply(200, { data: { results: [] } });
 
-    characters.events('1234', 10)
+    series.events('1234', 10)
       .then(function(data) {
         data.should.exist;
         done();
@@ -212,7 +212,7 @@ describe('characters', function() {
 
   it('should call #events with the correct limit and offset', function(done) {
     var route = util.format(
-      '/v1/public/characters/%s/events?ts=%s&apikey=public-test&hash=%s&limit=10&offset=10'
+      '/v1/public/series/%s/events?ts=%s&apikey=public-test&hash=%s&limit=10&offset=10'
     , '1234'
     , ts
     , hash);
@@ -221,7 +221,7 @@ describe('characters', function() {
       .get(route)
       .reply(200, { data: { results: [] } });
 
-    characters.events('1234', 10, 10)
+    series.events('1234', 10, 10)
       .then(function(data) {
         data.should.exist;
         done();
@@ -231,7 +231,7 @@ describe('characters', function() {
 
   it('should call #stories with the correct default parameters', function(done) {
     var route = util.format(
-      '/v1/public/characters/%s/stories?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
+      '/v1/public/series/%s/stories?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
     , '1234'
     , ts
     , hash);
@@ -240,7 +240,7 @@ describe('characters', function() {
       .get(route)
       .reply(200, { data: { results: [] } });
 
-    characters.stories('1234')
+    series.stories('1234')
       .then(function(data) {
         data.should.exist;
         done();
@@ -250,7 +250,7 @@ describe('characters', function() {
 
   it('should call #stories with the correct limit', function(done) {
     var route = util.format(
-      '/v1/public/characters/%s/stories?ts=%s&apikey=public-test&hash=%s&limit=10&offset=0'
+      '/v1/public/series/%s/stories?ts=%s&apikey=public-test&hash=%s&limit=10&offset=0'
     , '1234'
     , ts
     , hash);
@@ -259,7 +259,7 @@ describe('characters', function() {
       .get(route)
       .reply(200, { data: { results: [] } });
 
-    characters.stories('1234', 10)
+    series.stories('1234', 10)
       .then(function(data) {
         data.should.exist;
         done();
@@ -269,7 +269,7 @@ describe('characters', function() {
 
   it('should call #stories with the correct limit and offset', function(done) {
     var route = util.format(
-      '/v1/public/characters/%s/stories?ts=%s&apikey=public-test&hash=%s&limit=10&offset=10'
+      '/v1/public/series/%s/stories?ts=%s&apikey=public-test&hash=%s&limit=10&offset=10'
     , '1234'
     , ts
     , hash);
@@ -278,7 +278,7 @@ describe('characters', function() {
       .get(route)
       .reply(200, { data: { results: [] } });
 
-    characters.stories('1234', 10, 10)
+    series.stories('1234', 10, 10)
       .then(function(data) {
         data.should.exist;
         done();
@@ -286,9 +286,9 @@ describe('characters', function() {
       .done();
   });
 
-  it('should call #series with the correct default parameters', function(done) {
+  it('should call #characters with the correct limit', function(done) {
     var route = util.format(
-      '/v1/public/characters/%s/series?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
+      '/v1/public/series/%s/characters?ts=%s&apikey=public-test&hash=%s&limit=10&offset=0'
     , '1234'
     , ts
     , hash);
@@ -297,7 +297,7 @@ describe('characters', function() {
       .get(route)
       .reply(200, { data: { results: [] } });
 
-    characters.series('1234')
+    series.characters('1234', 10)
       .then(function(data) {
         data.should.exist;
         done();
@@ -305,9 +305,9 @@ describe('characters', function() {
       .done();
   });
 
-  it('should call #series with the correct limit', function(done) {
+  it('should call #characters with the correct limit and offset', function(done) {
     var route = util.format(
-      '/v1/public/characters/%s/series?ts=%s&apikey=public-test&hash=%s&limit=10&offset=0'
+      '/v1/public/series/%s/characters?ts=%s&apikey=public-test&hash=%s&limit=10&offset=10'
     , '1234'
     , ts
     , hash);
@@ -316,26 +316,7 @@ describe('characters', function() {
       .get(route)
       .reply(200, { data: { results: [] } });
 
-    characters.series('1234', 10)
-      .then(function(data) {
-        data.should.exist;
-        done();
-      })
-      .done();
-  });
-
-  it('should call #series with the correct limit and offset', function(done) {
-    var route = util.format(
-      '/v1/public/characters/%s/series?ts=%s&apikey=public-test&hash=%s&limit=10&offset=10'
-    , '1234'
-    , ts
-    , hash);
-
-    nock(rootUrl)
-      .get(route)
-      .reply(200, { data: { results: [] } });
-
-    characters.series('1234', 10, 10)
+    series.characters('1234', 10, 10)
       .then(function(data) {
         data.should.exist;
         done();
@@ -347,7 +328,7 @@ describe('characters', function() {
 
     it('should catch errors from #findAll', function(done) {
       var route = util.format(
-        '/v1/public/characters?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
+        '/v1/public/series?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
       , ts
       , hash);
 
@@ -355,7 +336,7 @@ describe('characters', function() {
         .get(route)
         .reply(404, 'Not found');
 
-      characters.findAll()
+      series.findAll()
         .fail(function(err) {
           err.should.exist;
           err.message.should.equal('Not found');
@@ -365,9 +346,9 @@ describe('characters', function() {
         .done();
     });
 
-    it('should catch errors from #findByName', function(done) {
+    it('should catch errors from #findByTitle', function(done) {
       var route = util.format(
-        '/v1/public/characters?ts=%s&apikey=public-test&hash=%s&name=test-man'
+        '/v1/public/series?ts=%s&apikey=public-test&hash=%s&title=test-man'
       , ts
       , hash);
 
@@ -375,7 +356,7 @@ describe('characters', function() {
         .get(route)
         .reply(404, 'Not found');
 
-      characters.findByName('test-man')
+      series.findByTitle('test-man')
         .fail(function(err) {
           err.should.exist;
           err.message.should.equal('Not found');
@@ -387,7 +368,7 @@ describe('characters', function() {
 
     it('should catch errors from #find', function(done) {
       var route = util.format(
-        '/v1/public/characters/%s?ts=%s&apikey=public-test&hash=%s'
+        '/v1/public/series/%s?ts=%s&apikey=public-test&hash=%s'
       , '1234'
       , ts
       , hash);
@@ -396,7 +377,7 @@ describe('characters', function() {
         .get(route)
         .reply(404, 'Not found');
 
-      characters.find('1234')
+      series.find('1234')
         .fail(function(err) {
           err.should.exist;
           err.message.should.equal('Not found');
@@ -408,7 +389,7 @@ describe('characters', function() {
 
     it('should catch errors from #comics', function(done) {
       var route = util.format(
-        '/v1/public/characters/%s/comics?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
+        '/v1/public/series/%s/comics?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
       , '1234'
       , ts
       , hash);
@@ -417,7 +398,7 @@ describe('characters', function() {
         .get(route)
         .reply(404, 'Not found');
 
-      characters.comics('1234')
+      series.comics('1234')
         .fail(function(err) {
           err.should.exist;
           err.message.should.equal('Not found');
@@ -429,7 +410,7 @@ describe('characters', function() {
 
     it('should catch errors from #events', function(done) {
       var route = util.format(
-        '/v1/public/characters/%s/events?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
+        '/v1/public/series/%s/events?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
       , '1234'
       , ts
       , hash);
@@ -438,7 +419,7 @@ describe('characters', function() {
         .get(route)
         .reply(404, 'Not found');
 
-      characters.events('1234')
+      series.events('1234')
         .fail(function(err) {
           err.should.exist;
           err.message.should.equal('Not found');
@@ -448,9 +429,9 @@ describe('characters', function() {
         .done();
     });
 
-    it('should catch errors from #series', function(done) {
+    it('should catch errors from #characters', function(done) {
       var route = util.format(
-        '/v1/public/characters/%s/series?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
+        '/v1/public/series/%s/characters?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
       , '1234'
       , ts
       , hash);
@@ -459,7 +440,7 @@ describe('characters', function() {
         .get(route)
         .reply(404, 'Not found');
 
-      characters.series('1234')
+      series.characters('1234')
         .fail(function(err) {
           err.should.exist;
           err.message.should.equal('Not found');
@@ -471,7 +452,7 @@ describe('characters', function() {
 
     it('should catch errors from #stories', function(done) {
       var route = util.format(
-        '/v1/public/characters/%s/stories?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
+        '/v1/public/series/%s/stories?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
       , '1234'
       , ts
       , hash);
@@ -480,7 +461,7 @@ describe('characters', function() {
         .get(route)
         .reply(404, 'Not found');
 
-      characters.stories('1234')
+      series.stories('1234')
         .fail(function(err) {
           err.should.exist;
           err.message.should.equal('Not found');
@@ -495,7 +476,7 @@ describe('characters', function() {
 
     it('should call #findAll with the correct defaults', function(done) {
       var route = util.format(
-        '/v1/public/characters?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
+        '/v1/public/series?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
       , ts
       , hash);
 
@@ -503,7 +484,7 @@ describe('characters', function() {
         .get(route)
         .reply(200, { data: { results: [] } });
 
-      characters.findAll(function(err, data) {
+      series.findAll(function(err, data) {
         (err === null).should.equal(true);
         data.should.exist;
         done();
@@ -512,7 +493,7 @@ describe('characters', function() {
 
     it('should call #findAll with the correct limit', function(done) {
       var route = util.format(
-        '/v1/public/characters?ts=%s&apikey=public-test&hash=%s&limit=10&offset=0'
+        '/v1/public/series?ts=%s&apikey=public-test&hash=%s&limit=10&offset=0'
       , ts
       , hash);
 
@@ -520,7 +501,7 @@ describe('characters', function() {
         .get(route)
         .reply(200, { data: { results: [] } });
 
-      characters.findAll(10, function(err, data) {
+      series.findAll(10, function(err, data) {
         (err === null).should.equal(true);
         data.should.exist;
 
@@ -530,7 +511,7 @@ describe('characters', function() {
 
     it('should call #comics with the correct defaults', function(done) {
       var route = util.format(
-        '/v1/public/characters/%s/comics?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
+        '/v1/public/series/%s/comics?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
       , '1234'
       , ts
       , hash);
@@ -539,7 +520,7 @@ describe('characters', function() {
         .get(route)
         .reply(200, { data: { results: [] } });
 
-      characters.comics('1234', function(err, data) {
+      series.comics('1234', function(err, data) {
         (err === null).should.equal(true);
         data.should.exist;
         done();
@@ -548,7 +529,7 @@ describe('characters', function() {
 
     it('should call #comics with the correct limit', function(done) {
       var route = util.format(
-        '/v1/public/characters/%s/comics?ts=%s&apikey=public-test&hash=%s&limit=10&offset=0'
+        '/v1/public/series/%s/comics?ts=%s&apikey=public-test&hash=%s&limit=10&offset=0'
       , '1234'
       , ts
       , hash);
@@ -557,7 +538,7 @@ describe('characters', function() {
         .get(route)
         .reply(200, { data: { results: [] } });
 
-      characters.comics('1234', 10, function(err, data) {
+      series.comics('1234', 10, function(err, data) {
         (err === null).should.equal(true);
         data.should.exist;
         done();
@@ -566,7 +547,7 @@ describe('characters', function() {
 
     it('should call #events with the correct defaults', function(done) {
       var route = util.format(
-        '/v1/public/characters/%s/events?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
+        '/v1/public/series/%s/events?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
       , '1234'
       , ts
       , hash);
@@ -575,7 +556,7 @@ describe('characters', function() {
         .get(route)
         .reply(200, { data: { results: [] } });
 
-      characters.events('1234', function(err, data) {
+      series.events('1234', function(err, data) {
         (err === null).should.equal(true);
         data.should.exist;
         done();
@@ -584,7 +565,7 @@ describe('characters', function() {
 
     it('should call #events with the correct limit', function(done) {
       var route = util.format(
-        '/v1/public/characters/%s/events?ts=%s&apikey=public-test&hash=%s&limit=10&offset=0'
+        '/v1/public/series/%s/events?ts=%s&apikey=public-test&hash=%s&limit=10&offset=0'
       , '1234'
       , ts
       , hash);
@@ -593,7 +574,7 @@ describe('characters', function() {
         .get(route)
         .reply(200, { data: { results: [] } });
 
-      characters.events('1234', 10, function(err, data) {
+      series.events('1234', 10, function(err, data) {
         (err === null).should.equal(true);
         data.should.exist;
         done();
@@ -602,7 +583,7 @@ describe('characters', function() {
 
     it('should call #stories with the correct defaults', function(done) {
       var route = util.format(
-        '/v1/public/characters/%s/stories?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
+        '/v1/public/series/%s/stories?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
       , '1234'
       , ts
       , hash);
@@ -611,7 +592,7 @@ describe('characters', function() {
         .get(route)
         .reply(200, { data: { results: [] } });
 
-      characters.stories('1234', function(err, data) {
+      series.stories('1234', function(err, data) {
         (err === null).should.equal(true);
         data.should.exist;
         done();
@@ -620,7 +601,7 @@ describe('characters', function() {
 
     it('should call #stories with the correct limit', function(done) {
       var route = util.format(
-        '/v1/public/characters/%s/stories?ts=%s&apikey=public-test&hash=%s&limit=10&offset=0'
+        '/v1/public/series/%s/stories?ts=%s&apikey=public-test&hash=%s&limit=10&offset=0'
       , '1234'
       , ts
       , hash);
@@ -629,7 +610,7 @@ describe('characters', function() {
         .get(route)
         .reply(200, { data: { results: [] } });
 
-      characters.stories('1234', 10, function(err, data) {
+      series.stories('1234', 10, function(err, data) {
         (err === null).should.equal(true);
         data.should.exist;
         done();

@@ -461,11 +461,102 @@ marvel.events.stories('1011334')
   .done();
 ```
 
-## Stories
-
-### #Todo
-
 ## Series
+
+###  #findAll
+
+Fetch all series within range. Accepts a limit and/or offset. Offset defaults
+to 0; limit defaults to 20 with a maximum of 100.
+
+Fetch the first 20 series.
+
+```js
+marvel.series.findAll()
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+Fetch the first 5 series.
+
+```js
+marvel.series.findAll(5)
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+Fetch 3 series starting at index 30.
+
+```js
+marvel.series.findAll(3, 30)
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+### #findByName
+
+Fetch series (returns an array) with the specified name.
+
+```js
+marvel.series.findByName('spider-man')
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+###  #find
+
+Fetch a single series with the specified ID.
+
+```js
+marvel.series.find('1011227')
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+### #comics
+
+Fetch a list of comics filtered by series ID.
+
+Optionally accepts a limit [20] and an offset [0].
+
+```js
+marvel.series.comics('1011334')
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+### #events
+
+Fetch a list of events filtered by series ID.
+
+Optionally accepts a limit [20] and an offset [0].
+
+```js
+marvel.series.events('1011334')
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+### #stories
+
+Fetch stories filtered by series ID.
+
+Optionally accepts a limit [20] and an offset [0].
+
+```js
+marvel.series.stories('1011334')
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+## Stories
 
 ### #Todo
 
