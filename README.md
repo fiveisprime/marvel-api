@@ -495,12 +495,12 @@ marvel.series.findAll(3, 30)
   .done();
 ```
 
-### #findByName
+### #findByTitle
 
-Fetch series (returns an array) with the specified name.
+Fetch series (returns an array) with the specified title.
 
 ```js
-marvel.series.findByName('spider-man')
+marvel.series.findByTitle('spider-man')
   .then(console.log)
   .fail(console.error)
   .done();
@@ -558,7 +558,74 @@ marvel.series.stories('1011334')
 
 ## Stories
 
-### #Todo
+###  #findAll
+
+Fetch all stories within range. Accepts a limit and/or offset. Offset defaults
+to 0; limit defaults to 20 with a maximum of 100.
+
+Fetch the first 20 stories.
+
+```js
+marvel.stories.findAll()
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+Fetch the first 5 stories.
+
+```js
+marvel.stories.findAll(5)
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+Fetch 3 stories starting at index 30.
+
+```js
+marvel.stories.findAll(3, 30)
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+###  #find
+
+Fetch a single comic with the specified ID.
+
+```js
+marvel.stories.find('4110')
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+### #characters
+
+Fetch a list of stories filtered by character ID.
+
+Optionally accepts a limit [20] and an offset [0].
+
+```js
+marvel.stories.characters('4110')
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+### #characters
+
+Fetch a list of stories filtered by character ID.
+
+Optionally accepts a limit [20] and an offset [0].
+
+```js
+marvel.stories.characters('4110')
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
 
 # License
 
