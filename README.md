@@ -181,7 +181,7 @@ marvel.characters.events('1011334')
 
 ### #stories
 
-Fetch a tories of events filtered by character ID.
+Fetch stories filtered by character ID.
 
 Optionally accepts a limit [20] and an offset [0].
 
@@ -228,7 +228,8 @@ marvel.creators.findAll(3, 30)
 
 ### #findByName
 
-Fetch creators (returns an array) with the specified name. A first name, middle name (option) and last name (option) can be specified.
+Fetch creators (returns an array) with the specified name. A first name, middle
+name (option) and last name (option) can be specified.
 
 Fetch by first name only.
 
@@ -276,6 +277,19 @@ Optionally accepts a limit [20] and an offset [0].
 
 ```js
 marvel.creators.comics('4110')
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+### #stories
+
+Fetch a list of creators filtered by story ID.
+
+Optionally accepts a limit [20] and an offset [0].
+
+```js
+marvel.creators.stories('4110')
   .then(console.log)
   .fail(console.error)
   .done();
@@ -343,9 +357,113 @@ marvel.comics.characters('4110')
   .done();
 ```
 
+### #stories
+
+Fetch a list of comics filtered by story ID.
+
+Optionally accepts a limit [20] and an offset [0].
+
+```js
+marvel.comics.stories('4110')
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
 ## Events
 
-### #Todo
+###  #findAll
+
+Fetch all events within range. Accepts a limit and/or offset. Offset defaults
+to 0; limit defaults to 20 with a maximum of 100.
+
+Fetch the first 20 events.
+
+```js
+marvel.events.findAll()
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+Fetch the first 5 events.
+
+```js
+marvel.events.findAll(5)
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+Fetch 3 events starting at index 30.
+
+```js
+marvel.events.findAll(3, 30)
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+### #findByName
+
+Fetch events (returns an array) with the specified name.
+
+```js
+marvel.events.findByName('spider-man')
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+###  #find
+
+Fetch a single event with the specified ID.
+
+```js
+marvel.events.find('1011227')
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+### #comics
+
+Fetch a list of comics filtered by event ID.
+
+Optionally accepts a limit [20] and an offset [0].
+
+```js
+marvel.events.comics('1011334')
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+### #characters
+
+Fetch a list of characters filtered by event ID.
+
+Optionally accepts a limit [20] and an offset [0].
+
+```js
+marvel.events.characters('1011334')
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
+### #stories
+
+Fetch stories filtered by event ID.
+
+Optionally accepts a limit [20] and an offset [0].
+
+```js
+marvel.events.stories('1011334')
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
 
 ## Series
 
