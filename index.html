@@ -485,16 +485,168 @@ to 0; limit defaults to 20 with a maximum of 100.</p>
 </pre></div>
 
 <h2>
-<a name="stories-4" class="anchor" href="#stories-4"><span class="octicon octicon-link"></span></a>Stories</h2>
-
-<h3>
-<a name="todo" class="anchor" href="#todo"><span class="octicon octicon-link"></span></a>#Todo</h3>
-
-<h2>
 <a name="series" class="anchor" href="#series"><span class="octicon octicon-link"></span></a>Series</h2>
 
 <h3>
-<a name="todo-1" class="anchor" href="#todo-1"><span class="octicon octicon-link"></span></a>#Todo</h3>
+<a name="findall-4" class="anchor" href="#findall-4"><span class="octicon octicon-link"></span></a>#findAll</h3>
+
+<p>Fetch all series within range. Accepts a limit and/or offset. Offset defaults
+to 0; limit defaults to 20 with a maximum of 100.</p>
+
+<p>Fetch the first 20 series.</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">series</span><span class="p">.</span><span class="nx">findAll</span><span class="p">()</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
+</pre></div>
+
+<p>Fetch the first 5 series.</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">series</span><span class="p">.</span><span class="nx">findAll</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
+</pre></div>
+
+<p>Fetch 3 series starting at index 30.</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">series</span><span class="p">.</span><span class="nx">findAll</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
+</pre></div>
+
+<h3>
+<a name="findbytitle" class="anchor" href="#findbytitle"><span class="octicon octicon-link"></span></a>#findByTitle</h3>
+
+<p>Fetch series (returns an array) with the specified title.</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">series</span><span class="p">.</span><span class="nx">findByTitle</span><span class="p">(</span><span class="s1">'spider-man'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
+</pre></div>
+
+<h3>
+<a name="find-4" class="anchor" href="#find-4"><span class="octicon octicon-link"></span></a>#find</h3>
+
+<p>Fetch a single series with the specified ID.</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">series</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'1011227'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
+</pre></div>
+
+<h3>
+<a name="comics-4" class="anchor" href="#comics-4"><span class="octicon octicon-link"></span></a>#comics</h3>
+
+<p>Fetch a list of comics filtered by series ID.</p>
+
+<p>Optionally accepts a limit [20] and an offset [0].</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">series</span><span class="p">.</span><span class="nx">comics</span><span class="p">(</span><span class="s1">'1011334'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
+</pre></div>
+
+<h3>
+<a name="events-2" class="anchor" href="#events-2"><span class="octicon octicon-link"></span></a>#events</h3>
+
+<p>Fetch a list of events filtered by series ID.</p>
+
+<p>Optionally accepts a limit [20] and an offset [0].</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">series</span><span class="p">.</span><span class="nx">events</span><span class="p">(</span><span class="s1">'1011334'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
+</pre></div>
+
+<h3>
+<a name="stories-4" class="anchor" href="#stories-4"><span class="octicon octicon-link"></span></a>#stories</h3>
+
+<p>Fetch stories filtered by series ID.</p>
+
+<p>Optionally accepts a limit [20] and an offset [0].</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">series</span><span class="p">.</span><span class="nx">stories</span><span class="p">(</span><span class="s1">'1011334'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
+</pre></div>
+
+<h2>
+<a name="stories-5" class="anchor" href="#stories-5"><span class="octicon octicon-link"></span></a>Stories</h2>
+
+<h3>
+<a name="findall-5" class="anchor" href="#findall-5"><span class="octicon octicon-link"></span></a>#findAll</h3>
+
+<p>Fetch all stories within range. Accepts a limit and/or offset. Offset defaults
+to 0; limit defaults to 20 with a maximum of 100.</p>
+
+<p>Fetch the first 20 stories.</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">stories</span><span class="p">.</span><span class="nx">findAll</span><span class="p">()</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
+</pre></div>
+
+<p>Fetch the first 5 stories.</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">stories</span><span class="p">.</span><span class="nx">findAll</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
+</pre></div>
+
+<p>Fetch 3 stories starting at index 30.</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">stories</span><span class="p">.</span><span class="nx">findAll</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
+</pre></div>
+
+<h3>
+<a name="find-5" class="anchor" href="#find-5"><span class="octicon octicon-link"></span></a>#find</h3>
+
+<p>Fetch a single comic with the specified ID.</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">stories</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'4110'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
+</pre></div>
+
+<h3>
+<a name="characters-3" class="anchor" href="#characters-3"><span class="octicon octicon-link"></span></a>#characters</h3>
+
+<p>Fetch a list of stories filtered by character ID.</p>
+
+<p>Optionally accepts a limit [20] and an offset [0].</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">stories</span><span class="p">.</span><span class="nx">characters</span><span class="p">(</span><span class="s1">'4110'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
+</pre></div>
+
+<h3>
+<a name="characters-4" class="anchor" href="#characters-4"><span class="octicon octicon-link"></span></a>#characters</h3>
+
+<p>Fetch a list of stories filtered by character ID.</p>
+
+<p>Optionally accepts a limit [20] and an offset [0].</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">marvel</span><span class="p">.</span><span class="nx">stories</span><span class="p">.</span><span class="nx">characters</span><span class="p">(</span><span class="s1">'4110'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">();</span>
+</pre></div>
 
 <h1>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h1>
