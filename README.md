@@ -295,10 +295,6 @@ marvel.creators.stories('4110')
   .done();
 ```
 
-## Stories
-
-### #Todo
-
 ## Comics
 
 ###  #findAll
@@ -464,6 +460,10 @@ marvel.events.stories('1011334')
   .fail(console.error)
   .done();
 ```
+
+## Stories
+
+### #Todo
 
 ## Series
 
