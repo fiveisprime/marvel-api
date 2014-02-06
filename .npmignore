@@ -2,5 +2,4 @@ spec
 coverage
 
 .jshintrc
-test.js
 Makefile

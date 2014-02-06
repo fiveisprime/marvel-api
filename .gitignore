@@ -12,7 +12,5 @@ logs
 results
 coverage
 
-test.js
-
 npm-debug.log
 node_modules
