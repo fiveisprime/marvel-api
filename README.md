@@ -1,4 +1,4 @@
-marvel-api [![Build Status](https://travis-ci.org/fiveisprime/marvel-api.svg?branch=master)](https://travis-ci.org/fiveisprime/marvel-api) [![NPM version](https://badge.fury.io/js/marvel-api.png)](http://badge.fury.io/js/marvel-api)
+marvel-api [![Build Status](https://travis-ci.org/fiveisprime/marvel-api.svg?branch=master)](https://travis-ci.org/fiveisprime/marvel-api) [![NPM version](https://badge.fury.io/js/marvel-api.svg)](http://badge.fury.io/js/marvel-api)
 ==========
 
 Node.js wrapper for working with the official Marvel Comics API
