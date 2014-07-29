@@ -1,6 +1,6 @@
 {
   "name": "marvel-api",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Node.js wrapper for working with the official Marvel Comics API",
   "main": "index.js",
   "scripts": {
