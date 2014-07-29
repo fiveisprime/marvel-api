@@ -142,6 +142,17 @@ marvel.characters.findByName('spider-man')
   .done();
 ```
 
+### #findByNameStartsWith
+
+Fetch characters with names that start with the specified string.
+
+```js
+marvel.characters.findByNameStartsWith('spi')
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
 ###  #find
 
 Fetch a single character with the specified ID.
