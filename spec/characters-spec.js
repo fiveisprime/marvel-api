@@ -77,12 +77,12 @@ describe('characters', function() {
       })
       .done();
   });
-  it('should call #findNameStartsWith with a string parameter',function(done){
-    var route = util.format(
-      '/v1/public/characters?ts=%s&apikey=public-test&hash=%s&name=test-man'
-      ,ts
-      ,hash);
 
+  it('should call #findNameStartsWith with a string parameter',function(done) {
+    var route = util.format(
+      '/v1/public/characters?ts=%s&apikey=public-test&hash=%s&offset=0&limit=20&nameStartsWith=Spi'
+    , ts
+    , hash);
 
     nock(rootUrl)
       .get(route)
@@ -95,7 +95,8 @@ describe('characters', function() {
       })
       .done();
 
-  })
+  });
+
   it('should call #findByName with the correct parameters', function(done) {
     var route = util.format(
       '/v1/public/characters?ts=%s&apikey=public-test&hash=%s&name=test-man'
