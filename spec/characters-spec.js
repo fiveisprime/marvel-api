@@ -77,7 +77,25 @@ describe('characters', function() {
       })
       .done();
   });
+  it('should call #findNameStartsWith with a string parameter',function(done){
+    var route = util.format(
+      '/v1/public/characters?ts=%s&apikey=public-test&hash=%s&name=test-man'
+      ,ts
+      ,hash);
 
+
+    nock(rootUrl)
+      .get(route)
+      .reply(200, { data: { results: {} } });
+
+    characters.findNameStartsWith('Spi')
+      .then(function(data) {
+        data.should.exist;
+        done();
+      })
+      .done();
+
+  })
   it('should call #findByName with the correct parameters', function(done) {
     var route = util.format(
       '/v1/public/characters?ts=%s&apikey=public-test&hash=%s&name=test-man'
