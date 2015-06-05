@@ -142,12 +142,12 @@ marvel.characters.findByName('spider-man')
   .done();
 ```
 
-### #findByNameStartsWith
+### #findNameStartsWith
 
 Fetch characters with names that start with the specified string.
 
 ```js
-marvel.characters.findByNameStartsWith('spi')
+marvel.characters.findNameStartsWith('spi')
   .then(console.log)
   .fail(console.error)
   .done();
