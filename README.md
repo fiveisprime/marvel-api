@@ -254,7 +254,7 @@ marvel.creators.findByName('austin')
 Fetch by first and middle name only.
 
 ```js
-marvel.creators.findByName('austin', 'dave')
+marvel.creators.findByName('Goran', 'Sudzuka')
   .then(console.log)
   .fail(console.error)
   .done();
@@ -263,7 +263,7 @@ marvel.creators.findByName('austin', 'dave')
 Fetch by first, middle, and last name.
 
 ```js
-marvel.creators.findByName('austin', 'dave', 'cam')
+marvel.creators.findByName('Pat', 'Lee', '(X-Men/FF)')
   .then(console.log)
   .fail(console.error)
   .done();
