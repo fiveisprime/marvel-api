@@ -80,7 +80,7 @@ describe('creators', function() {
 
   it('should call #findByName with just a first name', function(done) {
     var route = util.format(
-      '/v1/public/creators?ts=%s&apikey=public-test&hash=%s&firstName=austin&middleName=&lastName='
+      '/v1/public/creators?ts=%s&apikey=public-test&hash=%s&firstName=austin'
     , ts
     , hash);
 
@@ -98,7 +98,7 @@ describe('creators', function() {
 
   it('should call #findByName with a first and middle name', function(done) {
     var route = util.format(
-      '/v1/public/creators?ts=%s&apikey=public-test&hash=%s&firstName=austin&middleName=dave&lastName='
+      '/v1/public/creators?ts=%s&apikey=public-test&hash=%s&firstName=austin&middleName=dave'
     , ts
     , hash);
 
@@ -232,7 +232,7 @@ describe('creators', function() {
 
     it('should catch errors from #findByName', function(done) {
       var route = util.format(
-        '/v1/public/creators?ts=%s&apikey=public-test&hash=%s&firstName=test-man&middleName=&lastName='
+        '/v1/public/creators?ts=%s&apikey=public-test&hash=%s&firstName=test-man'
       , ts
       , hash);
 
