@@ -21,7 +21,7 @@
   },
   "homepage": "http://fiveisprime.github.io/marvel-api/",
   "dependencies": {
-    "request": "~2.33.0",
+    "request": "~2.74.0",
     "q": "~1.0.0"
   },
   "devDependencies": {
