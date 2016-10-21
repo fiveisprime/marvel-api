@@ -638,6 +638,17 @@ marvel.stories.characters('4110')
   .done();
 ```
 
+## #query
+
+Fetch a list of any kind of items by query.
+
+```js
+marvel.query('comics', {title: 'Uncanny X-MEN', issueNumber: 188})
+  .then(console.log)
+  .fail(console.error)
+  .done();
+```
+
 # License
 
 Copyright (c) 2014, Matt Hernandez <matt@modulus.io>
