@@ -25,10 +25,10 @@
     "q": "~1.0.0"
   },
   "devDependencies": {
-    "jshint": "~2.4.3",
-    "should": "~3.1.2",
-    "nock": "~0.27.2",
+    "istanbul": "~0.2.4",
+    "jshint": "^2.13.6",
     "mocha": "~1.17.1",
-    "istanbul": "~0.2.4"
+    "nock": "~0.27.2",
+    "should": "~3.1.2"
   }
 }
