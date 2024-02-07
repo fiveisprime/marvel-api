@@ -1,10 +1,10 @@
-var nock  = require('nock')
+let nock  = require('nock')
   , util  = require('util')
   , utils = require('../lib/utils')
   , rootUrl = 'http://gateway.marvel.com'
   , ts, hash;
 
-var stories = require('../lib/stories')({
+const stories = require('../lib/stories')({
   publicKey: 'public-test'
 , privateKey: 'private-test'
 }, utils);
@@ -25,7 +25,7 @@ describe('stories', function() {
   });
 
   it('should call #findAll with the correct default parameters', function(done) {
-    var route = util.format(
+    const route = util.format(
       '/v1/public/stories?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
     , ts
     , hash);
@@ -43,7 +43,7 @@ describe('stories', function() {
   });
 
   it('should call #findAll with the correct limit', function(done) {
-    var route = util.format(
+    const route = util.format(
       '/v1/public/stories?ts=%s&apikey=public-test&hash=%s&limit=10&offset=0'
     , ts
     , hash);
@@ -61,7 +61,7 @@ describe('stories', function() {
   });
 
   it('should call #findAll with the correct limit and offset', function(done) {
-    var route = util.format(
+    const route = util.format(
       '/v1/public/stories?ts=%s&apikey=public-test&hash=%s&limit=10&offset=10'
     , ts
     , hash);
@@ -79,7 +79,7 @@ describe('stories', function() {
   });
 
   it('should call #findByName with the correct parameters', function(done) {
-    var route = util.format(
+    const route = util.format(
       '/v1/public/stories?ts=%s&apikey=public-test&hash=%s&name=test-man'
     , ts
     , hash);
@@ -97,7 +97,7 @@ describe('stories', function() {
   });
 
   it('should call #find with the correct id', function(done) {
-    var route = util.format(
+    const route = util.format(
       '/v1/public/stories/%s?ts=%s&apikey=public-test&hash=%s'
     , '1234'
     , ts
@@ -116,7 +116,7 @@ describe('stories', function() {
   });
 
   it('should call #comics with the correct default parameters', function(done) {
-    var route = util.format(
+    const route = util.format(
       '/v1/public/stories/%s/comics?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
     , '1234'
     , ts
@@ -135,7 +135,7 @@ describe('stories', function() {
   });
 
   it('should call #comics with the correct limit', function(done) {
-    var route = util.format(
+    const route = util.format(
       '/v1/public/stories/%s/comics?ts=%s&apikey=public-test&hash=%s&limit=10&offset=0'
     , '1234'
     , ts
@@ -154,7 +154,7 @@ describe('stories', function() {
   });
 
   it('should call #comics with the correct limit and offset', function(done) {
-    var route = util.format(
+    const route = util.format(
       '/v1/public/stories/%s/comics?ts=%s&apikey=public-test&hash=%s&limit=10&offset=10'
     , '1234'
     , ts
@@ -173,7 +173,7 @@ describe('stories', function() {
   });
 
   it('should call #events with the correct default parameters', function(done) {
-    var route = util.format(
+    const route = util.format(
       '/v1/public/stories/%s/events?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
     , '1234'
     , ts
@@ -192,7 +192,7 @@ describe('stories', function() {
   });
 
   it('should call #events with the correct limit', function(done) {
-    var route = util.format(
+    const route = util.format(
       '/v1/public/stories/%s/events?ts=%s&apikey=public-test&hash=%s&limit=10&offset=0'
     , '1234'
     , ts
@@ -211,7 +211,7 @@ describe('stories', function() {
   });
 
   it('should call #events with the correct limit and offset', function(done) {
-    var route = util.format(
+    const route = util.format(
       '/v1/public/stories/%s/events?ts=%s&apikey=public-test&hash=%s&limit=10&offset=10'
     , '1234'
     , ts
@@ -230,7 +230,7 @@ describe('stories', function() {
   });
 
   it('should call #characters with the correct default parameters', function(done) {
-    var route = util.format(
+    const route = util.format(
       '/v1/public/stories/%s/characters?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
     , '1234'
     , ts
@@ -249,7 +249,7 @@ describe('stories', function() {
   });
 
   it('should call #characters with the correct limit', function(done) {
-    var route = util.format(
+    const route = util.format(
       '/v1/public/stories/%s/characters?ts=%s&apikey=public-test&hash=%s&limit=10&offset=0'
     , '1234'
     , ts
@@ -268,7 +268,7 @@ describe('stories', function() {
   });
 
   it('should call #characters with the correct limit and offset', function(done) {
-    var route = util.format(
+    const route = util.format(
       '/v1/public/stories/%s/characters?ts=%s&apikey=public-test&hash=%s&limit=10&offset=10'
     , '1234'
     , ts
@@ -287,7 +287,7 @@ describe('stories', function() {
   });
 
   it('should call #series with the correct default parameters', function(done) {
-    var route = util.format(
+    const route = util.format(
       '/v1/public/stories/%s/series?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
     , '1234'
     , ts
@@ -306,7 +306,7 @@ describe('stories', function() {
   });
 
   it('should call #series with the correct limit', function(done) {
-    var route = util.format(
+    const route = util.format(
       '/v1/public/stories/%s/series?ts=%s&apikey=public-test&hash=%s&limit=10&offset=0'
     , '1234'
     , ts
@@ -325,7 +325,7 @@ describe('stories', function() {
   });
 
   it('should call #series with the correct limit and offset', function(done) {
-    var route = util.format(
+    const route = util.format(
       '/v1/public/stories/%s/series?ts=%s&apikey=public-test&hash=%s&limit=10&offset=10'
     , '1234'
     , ts
@@ -346,7 +346,7 @@ describe('stories', function() {
   describe('error handling', function() {
 
     it('should catch errors from #findAll', function(done) {
-      var route = util.format(
+      const route = util.format(
         '/v1/public/stories?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
       , ts
       , hash);
@@ -366,7 +366,7 @@ describe('stories', function() {
     });
 
     it('should catch errors from #findByName', function(done) {
-      var route = util.format(
+      const route = util.format(
         '/v1/public/stories?ts=%s&apikey=public-test&hash=%s&name=test-man'
       , ts
       , hash);
@@ -386,7 +386,7 @@ describe('stories', function() {
     });
 
     it('should catch errors from #find', function(done) {
-      var route = util.format(
+      const route = util.format(
         '/v1/public/stories/%s?ts=%s&apikey=public-test&hash=%s'
       , '1234'
       , ts
@@ -407,7 +407,7 @@ describe('stories', function() {
     });
 
     it('should catch errors from #comics', function(done) {
-      var route = util.format(
+      const route = util.format(
         '/v1/public/stories/%s/comics?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
       , '1234'
       , ts
@@ -428,7 +428,7 @@ describe('stories', function() {
     });
 
     it('should catch errors from #events', function(done) {
-      var route = util.format(
+      const route = util.format(
         '/v1/public/stories/%s/events?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
       , '1234'
       , ts
@@ -449,7 +449,7 @@ describe('stories', function() {
     });
 
     it('should catch errors from #series', function(done) {
-      var route = util.format(
+      const route = util.format(
         '/v1/public/stories/%s/series?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
       , '1234'
       , ts
@@ -470,7 +470,7 @@ describe('stories', function() {
     });
 
     it('should catch errors from #characters', function(done) {
-      var route = util.format(
+      const route = util.format(
         '/v1/public/stories/%s/characters?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
       , '1234'
       , ts
@@ -494,7 +494,7 @@ describe('stories', function() {
   describe('optional parameters with callbacks', function() {
 
     it('should call #findAll with the correct defaults', function(done) {
-      var route = util.format(
+      const route = util.format(
         '/v1/public/stories?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
       , ts
       , hash);
@@ -511,7 +511,7 @@ describe('stories', function() {
     });
 
     it('should call #findAll with the correct limit', function(done) {
-      var route = util.format(
+      const route = util.format(
         '/v1/public/stories?ts=%s&apikey=public-test&hash=%s&limit=10&offset=0'
       , ts
       , hash);
@@ -529,7 +529,7 @@ describe('stories', function() {
     });
 
     it('should call #comics with the correct defaults', function(done) {
-      var route = util.format(
+      const route = util.format(
         '/v1/public/stories/%s/comics?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
       , '1234'
       , ts
@@ -547,7 +547,7 @@ describe('stories', function() {
     });
 
     it('should call #comics with the correct limit', function(done) {
-      var route = util.format(
+      const route = util.format(
         '/v1/public/stories/%s/comics?ts=%s&apikey=public-test&hash=%s&limit=10&offset=0'
       , '1234'
       , ts
@@ -565,7 +565,7 @@ describe('stories', function() {
     });
 
     it('should call #events with the correct defaults', function(done) {
-      var route = util.format(
+      const route = util.format(
         '/v1/public/stories/%s/events?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
       , '1234'
       , ts
@@ -583,7 +583,7 @@ describe('stories', function() {
     });
 
     it('should call #events with the correct limit', function(done) {
-      var route = util.format(
+      const route = util.format(
         '/v1/public/stories/%s/events?ts=%s&apikey=public-test&hash=%s&limit=10&offset=0'
       , '1234'
       , ts
@@ -601,7 +601,7 @@ describe('stories', function() {
     });
 
     it('should call #characters with the correct defaults', function(done) {
-      var route = util.format(
+      const route = util.format(
         '/v1/public/stories/%s/characters?ts=%s&apikey=public-test&hash=%s&limit=20&offset=0'
       , '1234'
       , ts
@@ -619,7 +619,7 @@ describe('stories', function() {
     });
 
     it('should call #characters with the correct limit', function(done) {
-      var route = util.format(
+      const route = util.format(
         '/v1/public/stories/%s/characters?ts=%s&apikey=public-test&hash=%s&limit=10&offset=0'
       , '1234'
       , ts
