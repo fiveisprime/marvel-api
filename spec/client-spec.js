@@ -1,4 +1,4 @@
-var marvel = require('../');
+const marvel = require('../');
 
 describe('client', function() {
 
@@ -21,7 +21,7 @@ describe('client', function() {
   });
 
   it('should initialize with both public and private keys', function() {
-    var client = marvel.createClient({
+    const client = marvel.createClient({
       publicKey: 'public'
     , privateKey: 'private'
     });
